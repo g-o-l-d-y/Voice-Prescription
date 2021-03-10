@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block style %}
+    body {
+      background-image: url("{{url_for('static', filename='bg.jpg')}}"); 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size:74.4% 100%;
+      position: relative;
+    } 
+    
+{% endblock style %}
+{% block content %}
+    <div class="col-sm-12" style="background-image: linear-gradient(to bottom, rgba(41,41,0,0.6) 0%, rgba(10,10,10,0.9) 100%)">
+        <h1 style="color: white; text-align: center;"><b>JenGold Hospital</b></h1>
+    </div>
+	<form method="POST" action="/createPDF">
+	  <label>Aadhar ID</label><br>
+		<input type="text" id="aadharid" name="aadharid" value="{{aadharid}}">
+	  <input type="submit" formaction="/check" value="Check"><br>
+	  
+	  <label>Name</label><br>
+		<input type="text" id="name" name="name" value="{{name}}"><br>
+	  <label>Age</label><br>
+		<input type="text" id="age" name="age" value="{{age}}"><br>
+	  <label>Address</label><br>
+		<input type="address" id="address" name="address" value="{{address}}"><br>
+	  <label>E-mail</label><br>
+		<input type="text" id="email" name="email" value="{{email}}"><br>
+	  <label>Date</label><br>
+		<input type="date" id="date" name="date" value="{{date}}"><br><br>
+	  <input type="submit" formaction="/confirmDetails" value="Confirm Details"><br>
+	  <br>
+	  <label>Disease</label><br>
+	  <a href="/disease"><img src="{{url_for('static', filename='play.png')}}" width="50" height="50"></a>
+		<input type="text" id="disease" name="disease" value="{{disease}}">
+      <input type="submit" formaction="/recommend" value="Recommend"><br>
+      
+      <div class="row">
+      <div class="col-sm-3">
+	    <div class="panel panel-success">
+        <div class="panel-heading">Recommendations</div>
+        <div class="panel-body">
+          {%for med in meds%} 
+              <a href="/assignMed/{{med}}">{{med}}</a><br>
+          {% endfor %}
+         </div>
+         </div>
+         </div>
+         <div class="col-sm-9">
+             
+         </div>
+    </div>
+        
+      <label>Medicine</label><br>
+	  <a href="/medicine"><img src="{{url_for('static', filename='play.png')}}" width="50" height="50"></a>
+		<input type="text" id="medicine" name="medicine" value="{{medicine}}"><br>
+	  <label>Dosage</label><br>
+	  <a href="/dosage"><img src="{{url_for('static', filename='play.png')}}" width="50" height="50"></a>
+		<input type="text" id="dosage" name="dosage" value="{{dosage}}"><br>
+	  <label>Signature Image</label>
+		<input type="file" id="signimage" name="signimage"><br><br>
+	  <input type="submit" value="Create PDF">
+	</form> 
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block style %}
+    body {
+      background-image: url("{{url_for('static', filename='bg.jpg')}}"); 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size:74.4% 100%;
+      position: relative;
+    } 
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+	.container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .my-class {
+        background-color: cornflowerblue;
+        color: white;
+        text-align: center;
+        display: inline-block;
+    }
+{% endblock style %}
+{% block content %}
+    <div class="col-sm-12" style="background-image: linear-gradient(to bottom, rgba(41,41,0,0.6) 0%, rgba(10,10,10,0.9) 100%)">
+        <img src="{{url_for('static', filename='logo1.png')}}" class="img-rounded" alt="image" width="50" height="50" />
+        <h1 style="color: white; text-align: center;"><b>Voice Prescription</b></h1>
+    </div>
+    <br>
+    
+    <img src="{{url_for('static', filename='hi.png')}}">
+    <a href="/prescribe"><button type="button" class="btn btn-outline-Dark"><b>Prescribe</b></button></a>
+    <br>
+    <br>
+	<h4>Old Patient</h4>
+	<form action="/search" method="POST">
+		<label>Aadhar ID: <br><input type="text" id="aadharid" name="aadharid">
+	<input type="submit" value="Search"><br>
+	<br> 
+	{% if not error %}
+	    <div class="container">
+	    <div class="panel panel-success">
+        <div class="panel-heading">Patient History</div>
+        <div class="panel-body">
+		{%for pdf in pdfs%}  
+			<a href="file:\\C:\Users\goldy\.spyder-py3\SIH 2020\{{pdf}}.pdf">{{pdf}}</a><br>
+		{%endfor%} </div></div></div>
+	{% else %}
+	    <div class="panel panel-danger">
+        <div class="panel-heading">Not Found</div></div>
+	{% endif %}
+{% endblock content %}

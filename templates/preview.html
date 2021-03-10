@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block style %}
+	body {
+      background-image: url("{{url_for('static', filename='bg.jpg')}}"); 
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size:74.4% 100%;
+      position: relative;
+    } 
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .my-class {
+        background-color: cornflowerblue;
+        color: white;
+        text-align: center;
+        display: inline-block;
+    }
+{% endblock style %}
+{% block content %}
+    <div class="col-sm-12" style="background-image: linear-gradient(to bottom, rgba(41,41,0,0.6) 0%, rgba(10,10,10,0.9) 100%)">
+        <h1 style="color: white; text-align: center;"><b>Your prescription is ready!</b></h1>
+    </div>
+    <img src="{{url_for('static', filename='success.png')}}" width="200" height="200" class="img-rounded" alt="image" />
+	<a href="file:\\C:\Users\goldy\.spyder-py3\SIH 2020\{{filename}}.pdf"><button type="button" class="btn btn-outline-Dark">Open PDF</button></a><br><br>
+	<a href="/sendPDF"><button type="button" class="btn btn-outline-Dark">Send PDF</button></a><br><br>
+	<a href="/"><button type="button" class="btn btn-outline-Dark">Home</button></a>
+	
+{% endblock content %}
